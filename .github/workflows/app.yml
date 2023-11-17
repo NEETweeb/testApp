@@ -19,7 +19,7 @@ jobs:
         with:
           owner: NEETweeb
           repo: e2e_netmaykah
-          github_token: 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
+          github_token: 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
           workflow_file_name: playwright.yml
           ref: main
           wait_interval: 10
