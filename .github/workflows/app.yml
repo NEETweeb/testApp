@@ -1,0 +1,28 @@
+name: 'sample app repo'
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  trigger_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Workflow name
+        shell: bash
+        run: |
+          echo "me, app repo"
+      - name: Trigger e2e
+        uses: convictional/trigger-workflow-and-wait@v1.6.1
+        with:
+          owner: NEETweeb
+          repo: e2e_netmaykah
+          github_token: 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
+          workflow_file_name: playwright.yml
+          ref: main
+          wait_interval: 10
+          propagate_workflow: true
+          trigger_workflow: true
+          wait_workflow: true
