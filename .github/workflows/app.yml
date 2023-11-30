@@ -1,20 +1,15 @@
 name: 'sample app repo'
 
-on: [workflow_dispatch]
-#  push:
-#    branches: [ main, master ]
-#  pull_request:
-#    branches: [ main, master ]
+on: 
+  #workflow_dispatch:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
 
 jobs:
   trigger_workflow:
     runs-on: ubuntu-latest
-#    steps:
-#      - name: Echo Workflow name
-#        shell: bash
-#        run: |
-#          curl -XPOST -u "NEETweeb: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" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/NEETweeb/e2e_netmaykah/actions/workflows/playwright.yaml/dispatches --data '{"ref": "master"}'
-#    name: Trigger automation tests
     steps:
     - uses: actions/github-script@v6
       with:
@@ -26,17 +21,3 @@ jobs:
            workflow_id: 'playwright.yml',
            ref: 'main'
           })
-
-
-#      - name: Trigger child repo workflow
-#        uses: convictional/trigger-workflow-and-wait@v1.6.1
-#        with:
-#          owner: NEETweeb
-#          repo: e2e_netmaykah
-#          github_token: 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
-#          workflow_file_name: playwright.yml
-#          ref: main
-#          wait_interval: 10
-#          propagate_failure: true
-#          trigger_workflow: true
-#          wait_workflow: true
