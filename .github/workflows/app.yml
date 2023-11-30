@@ -9,23 +9,23 @@ on: [workflow_dispatch]
 jobs:
   trigger_workflow:
     runs-on: ubuntu-latest
-    steps:
-      - name: Echo Workflow name
-        shell: bash
-        run: |
-          curl -XPOST -u "NEETweeb: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" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/NEETweeb/e2e_netmaykah/actions/workflows/playwright.yaml/dispatches --data '{"ref": "master"}'
-#    name: Trigger automation tests
 #    steps:
-#    - uses: actions/github-script@v6
-#      with:
-#        github-token: ${{ secrets.PERSONAL_TOKEN }}
-#        script: |
-#          await github.rest.actions.createWorkflowDispatch({
-#           owner: 'NEETweeb',
-#           repo: 'e2e_netmaykah',
-#           workflow_id: 'playwright.yml',
-#           ref: 'main'
-#          })
+#      - name: Echo Workflow name
+#        shell: bash
+#        run: |
+#          curl -XPOST -u "NEETweeb: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" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/NEETweeb/e2e_netmaykah/actions/workflows/playwright.yaml/dispatches --data '{"ref": "master"}'
+#    name: Trigger automation tests
+    steps:
+    - uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.DISPATCH_PAT }}
+        script: |
+          await github.rest.actions.createWorkflowDispatch({
+           owner: 'NEETweeb',
+           repo: 'e2e_netmaykah',
+           workflow_id: 'playwright.yml',
+           ref: 'main'
+          })
 
 
 #      - name: Trigger child repo workflow
