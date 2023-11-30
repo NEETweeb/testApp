@@ -9,11 +9,18 @@ on: [workflow_dispatch]
 jobs:
   trigger_workflow:
     runs-on: ubuntu-latest
+    name: Trigger automation tests
     steps:
-      - name: Echo Workflow name
-        shell: bash
-        run: |
-          echo "I am Workflow of Parent REPO"
+    - uses: actions/github-script@v6
+      with:
+        github-token: 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
+        script: |
+          await github.rest.actions.createWorkflowDispatch({
+           owner: 'NEETweeb',
+           repo: 'e2e_netmaykah',
+           workflow_id: 'playwright.yml',
+           ref: 'main'
+          })
 
 
 #      - name: Trigger child repo workflow
