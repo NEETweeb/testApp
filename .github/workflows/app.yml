@@ -1,10 +1,10 @@
 name: 'sample app repo'
 
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+on: [workflow_dispatch]
+#  push:
+#    branches: [ main, master ]
+#  pull_request:
+#    branches: [ main, master ]
 
 jobs:
   trigger_workflow:
@@ -14,15 +14,28 @@ jobs:
         shell: bash
         run: |
           echo "I am Workflow of Parent REPO"
-      - name: Trigger child repo workflow
-        uses: convictional/trigger-workflow-and-wait@v1.6.1
-        with:
-          owner: NEETweeb
-          repo: e2e_netmaykah
-          github_token: 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
-          workflow_file_name: playwright.yml
-          ref: main
-          wait_interval: 10
-          propagate_failure: true
-          trigger_workflow: true
-          wait_workflow: true
+#      - name: Trigger automation tests
+#        steps:
+#        - uses: actions/github-script@v6
+#          with:
+#            github-token: ${{ secrets.PERSONAL_TOKEN }}
+#            script: |
+#              await github.rest.actions.createWorkflowDispatch({
+#              owner: '*****',
+#              repo: '*****',
+#              workflow_id: '*****.yml',
+#              ref: 'main'
+#              })
+
+#      - name: Trigger child repo workflow
+#        uses: convictional/trigger-workflow-and-wait@v1.6.1
+#        with:
+#          owner: NEETweeb
+#          repo: e2e_netmaykah
+#          github_token: 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
+#          workflow_file_name: playwright.yml
+#          ref: main
+#          wait_interval: 10
+#          propagate_failure: true
+#          trigger_workflow: true
+#          wait_workflow: true
